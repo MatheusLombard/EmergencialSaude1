@@ -1,15 +1,21 @@
 {
   "expo": {
-    "name": "EmergencialSaude1.0",
-    "slug": "EmergencialSaude1.0",
+    "name": "EmergencialSaude1",
+    "slug": "EmergencialSaude1",
     "version": "1.0.0",
     "orientation": "portrait",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "fonts": {
+      "YourFontName": "./assets/fonts/Roboto.ttf"
+    },
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#060007"
     },
     "ios": {
       "supportsTablet": true
@@ -17,11 +23,23 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#880814"
+      },
+      "package": "com.matheus1233.EmergencialSaude1",
+      "permissions": [
+        "INTERNET",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b1fc26a5-b434-44ff-9c36-c1f86d8d7fbc"
+      }
+    },
+    "owner": "matheus1233"
   }
 }
