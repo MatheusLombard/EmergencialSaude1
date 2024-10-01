@@ -1,33 +1,24 @@
-import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Image, Text, ImageBackground } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStylesTheme } from "../../style/styles";
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import  Icon  from 'react-native-vector-icons/FontAwesome';
 import { useEmergencialContext } from "../../hook/useEmergencialContext";
 import { useEffect } from "react";
 
 export function Welcome({navigation}) {
   const stylesTheme = useStylesTheme();
-  const {backgroundColorComponents} = useEmergencialContext();
 
     return (
-      <SafeAreaView style={{...stylesTheme.containerTheme, ...styles.container}}>
+      <ImageBackground style={{...stylesTheme.containerTheme, ...styles.container}} source={require('../../assets/backgroundTelaWelcome.png')}>
         <View style={styles.conteudoPrincipal}>
-          <View >
-            <Text style={{...stylesTheme.grande, ...styles.tituloWelcome}}>
-              BEM VINDO AO EMERGENCIAL SAÚDE
-            </Text>
-          </View>
-          <View style={styles.viewImgLogo}>
-            <Image source={require('../../assets/logo.png')} style={styles.imgLogo}/>
-          </View>
           <View style={styles.viewBotaoCadastrar}>
-            <TouchableOpacity style={{...styles.botaoCadastrarEntrar, backgroundColor: backgroundColorComponents}} onPress={() => navigation.navigate('Cadastro')}>
-              <Text style={{...stylesTheme.grande, ...styles.textCadastrar, ...stylesTheme.colorTextCadastrar}}>
+            <TouchableOpacity style={{...styles.botaoCadastrarEntrar, ...stylesTheme.backgroundColorButton}} onPress={() => navigation.navigate('Cadastro')}>
+              <Text style={{...stylesTheme.grande, ...styles.textCadastrar, ...stylesTheme.colorTextButton}}>
                 Cadastrar
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{...styles.botaoCadastrarEntrar, ...stylesTheme.backgroundColorComponentsEntrar}} onPress={() => navigation.navigate('Login')}>
-              <Text style={{...stylesTheme.grande, ...styles.textCadastrar}}>
+            <TouchableOpacity style={{...styles.botaoCadastrarEntrar, ...stylesTheme.backgroundColorButton}} onPress={() => navigation.navigate('Login')}>
+              <Text style={{...stylesTheme.grande, ...styles.textCadastrar, ...stylesTheme.colorTextButton}}>
                 Entrar
               </Text>
             </TouchableOpacity>
@@ -43,10 +34,10 @@ export function Welcome({navigation}) {
             {/* <Text style={{...styles.textColor, ...styles.textAcessibilidade}}>
               Acessibilidade
             </Text> */}
-            <Icon name="accessible" style={stylesTheme.textColor} size={28}/>
+            <Icon name="low-vision" style={stylesTheme.textColor} size={28}/>
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
+      </ImageBackground>
     );
   }
 
@@ -76,17 +67,16 @@ const styles = StyleSheet.create({
   },
   viewBotaoCadastrar:{
     width: '100%',
-    justifyContent: 'center',
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    bottom: 100,
     gap: 20
   },
   botaoCadastrarEntrar:{
-    backgroundColor: '#fff',
     width: '80%',
-    height: 50,
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: 70,
+    borderRadius: 15,
   },
   textCadastrar:{
     fontWeight: 600,

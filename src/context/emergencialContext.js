@@ -4,120 +4,114 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const EmergenciaContext = createContext({});
 
 export const EmergenciaProvider = ({ children }) => {
-    const [backgroundColor, setBackgroundColor] = useState('#060007');
-    const [backgroundColorComponents, setBackgroundColorComponents] = useState('#fff');
-    const [backgroundColorComponentsEntrar, setBackgroundColorComponentsEntrar] = useState('#ff3131');
-    const [colorText, setColorText] = useState('#fff');
-    const [colorTextCadastrar, setColorTextCadastrar] = useState('#ff3131');
-    const [colorComponentsText, setColorComponentsText] = useState('#0f0f0f0');
-    // const [colorComponentsDrawer, setColorComponentsDrawer] = useState('#fff');
-    const [colorComponentsChamarDrawer, setColorComponentsChamarDrawer] = useState('#ff3131');
-    const [colorComponentsBox, setColorComponentsBox] = useState('#fff');
-    const [colorComponentsChoose, setColorComponentsChoose] = useState('#fff');
-    const [tamanhoFonte, setTamanhoFonte] = useState(0);
+  const [backgroundColor, setBackgroundColor] = useState('#fff5f5');
+  const [backgroundColorButton, setBackgroundColorButton] = useState('#fff')
+  const [backgroundColorVermelho, setBackgroundColorVermelho] = useState('#fff')
+  const [textColor, setTextColor] = useState('#fff')
+  const [colorTextButton,  setColorTextButton] = useState('#9b1717')
+  const [textColorBlack,  setTextColorBlack] = useState('#000')
 
-    const [usuarioId, setUsuarioId] = useState('null')
-    const [initialRouteName, setInitialRouteName] = useState(null)
+  const [tamanhoFonte, setTamanhoFonte] = useState(0);
 
-    
-    function setDefaultColors() {
-        setBackgroundColor('#060007');
-        setColorText('#fff');
-        setColorTextCadastrar('#ff3131');
-        setBackgroundColorComponents('#fff');
-        setBackgroundColorComponentsEntrar('#ff3131');
-        setColorComponentsChamarDrawer('#ff3131');
-    }
+  const [usuarioId, setUsuarioId] = useState('null')
 
-    useEffect(() => {
-        async function getStorage() {
-          try {
-            const storageTamanhoFonte = await AsyncStorage.getItem('tamanhoFonte');
-            const storageBackgroundColor = await AsyncStorage.getItem('background');
+  function setDefaultColors() {
+    setBackgroundColor('#fff5f5');
+    setBackgroundColorButton('#fff')
+    setColorTextButton('#9b1717')
+    setTextColor('#fff')
+    setTextColorBlack('#000')
+    setBackgroundColorVermelho('#840d0d')
+  }
+  function setColorProta() {
+    setBackgroundColor('#fff5f4');
+    setBackgroundColorButton('#fff')
+    setColorTextButton('#9b1717')
+    setTextColor('#fff')
+    setTextColorBlack('#000')
+    setBackgroundColorVermelho('#840d0d')
+  }
+  function setColorTrita() {
+    setBackgroundColor('#fff5f6');
+    setBackgroundColorButton('#fff')
+    setColorTextButton('#9b1717')
+    setTextColor('#fff')
+    setTextColorBlack('#000')
+    setBackgroundColorVermelho('#840d0d')
+  }
 
-            if (storageTamanhoFonte) {
-              switch (storageTamanhoFonte) {
-                case 'p':
-                  setTamanhoFonte(0);
-                  break;
-                case 'm':
-                  setTamanhoFonte(3);
-                  break;
-                case 'g':
-                  setTamanhoFonte(6);
-                  break;
-                default:
-                  console.log('Valor de tamanhoFonte não reconhecido');
-              }
-            }
+  useEffect(() => {
+    async function getStorage() {
+      try {
+        const storageTamanhoFonte = await AsyncStorage.getItem('tamanhoFonte');
+        const storageBackgroundColor = await AsyncStorage.getItem('background');
 
-            if (storageBackgroundColor) {
-              if (storageBackgroundColor === '#FFFFFE') {
-                setBackgroundColor('#FFFFFE');
-                setColorText('#38070C');
-                setColorTextCadastrar('#38070C');
-                setBackgroundColorComponents('#FF933E');
-                setBackgroundColorComponentsEntrar('#FF933E');
-                setColorComponentsChamarDrawer('#FF933E')
-
-              } else if (storageBackgroundColor === '#FFF') {
-                setBackgroundColor('#FFF');
-                setColorText('#38070C');
-                setColorTextCadastrar('#38070C');
-                setBackgroundColorComponents('#FFA1AA');
-                setBackgroundColorComponentsEntrar('#FFA1AA');
-                setColorComponentsChamarDrawer('#FFA1AA')
-              } else {
-                console.log('Cor armazenada não encontrada, usando cor padrão.');
-                setDefaultColors();
-              }
-            } else {
-              setDefaultColors();
-            }
-          } catch (error) {
-            console.error('Erro ao buscar dados do AsyncStorage:', error);
+        if (storageTamanhoFonte) {
+          switch (storageTamanhoFonte) {
+            case 'p':
+              setTamanhoFonte(0);
+              break;
+            case 'm':
+              setTamanhoFonte(3);
+              break;
+            case 'g':
+              setTamanhoFonte(6);
+              break;
+            default:
+              console.log('Valor de tamanhoFonte não reconhecido');
           }
         }
 
-        getStorage();
-      
-        return () => {
-        };
-      }, []);
-      
+        if (storageBackgroundColor) {
+          if (storageBackgroundColor === '#fff5f4') {
+            setColorProta();
+
+          } else if (storageBackgroundColor === '#fff5f6') {
+            setColorTrita();
+          } else {
+            console.log('Cor armazenada não encontrada, usando cor padrão.');
+            setDefaultColors();
+          }
+        } else {
+          setDefaultColors();
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados do AsyncStorage:', error);
+      }
+    }
+
+    getStorage();
+
+    return () => {
+    };
+  }, []);
 
 
-    return (
-        <EmergenciaContext.Provider
-            value={{
-                backgroundColor,
-                setBackgroundColor,
-                backgroundColorComponents,
-                setBackgroundColorComponents,
-                backgroundColorComponentsEntrar,
-                setBackgroundColorComponentsEntrar,
-                colorText,
-                setColorText,
-                colorTextCadastrar,
-                setColorTextCadastrar,
-                colorComponentsText,
-                setColorComponentsText,
-                // colorComponentsDrawer,
-                // setColorComponentsDrawer,
-                colorComponentsChamarDrawer,
-                setColorComponentsChamarDrawer,
-                colorComponentsBox,
-                setColorComponentsBox,
-                colorComponentsChoose,
-                setColorComponentsChoose,
-                tamanhoFonte,
-                setTamanhoFonte,
 
-                usuarioId,
-                setUsuarioId
-            }}
-        >
-            {children}
-        </EmergenciaContext.Provider>
-    );
+  return (
+    <EmergenciaContext.Provider
+      value={{
+        backgroundColor,
+        setBackgroundColor,
+        backgroundColorButton,
+        setBackgroundColorButton,
+        colorTextButton,
+        setColorTextButton,
+        textColor,
+        setTextColor,
+        textColorBlack,
+        setTextColorBlack,
+        backgroundColorVermelho,
+        setBackgroundColorVermelho,
+
+        tamanhoFonte,
+        setTamanhoFonte,
+
+        usuarioId,
+        setUsuarioId
+      }}
+    >
+      {children}
+    </EmergenciaContext.Provider>
+  );
 };

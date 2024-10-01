@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native";
 import { useEmergencialContext } from "../hook/useEmergencialContext";
 
 export const useStylesTheme = () => {
-    const { backgroundColor, colorText, colorTextCadastrar, backgroundColorComponents, 
-      colorComponentsText, backgroundColorComponentsEntrar, tamanhoFonte, colorComponentsChamarDrawer} = useEmergencialContext();
+    const { backgroundColor, backgroundColorButton, colorTextButton, tamanhoFonte, textColor, textColorBlack,
+      backgroundColorVermelho
+    } = useEmergencialContext();
     return StyleSheet.create({
         containerTheme: {
             backgroundColor: backgroundColor,
@@ -13,45 +14,57 @@ export const useStylesTheme = () => {
           },
           grande: {
             fontSize: 32 + tamanhoFonte, 
-            color: colorText,
+            color: textColor,
           },
           medio: {
             fontSize: 23 + tamanhoFonte,
-            color: colorText,
+            color: textColor,
           },
           pequeno: {
             fontSize: 18 + tamanhoFonte,
-            color: colorText,
-          },
-          backgroundColorComponents: {
-            backgroundColor: backgroundColorComponents,
-            alignItems: "center",
-            justifyContent: "center",
-          },
-          botoes:{
-            fontSize: 25 + tamanhoFonte,
-            color: colorComponentsText // ou #000
+            color: textColor,
           },
           backgroundColor: {
             backgroundColor: backgroundColor,
           },
-          textColor:{
-            color: colorText,
+          backgroundColorButton: {
+            backgroundColor: backgroundColorButton,
+            alignItems: "center",
+            justifyContent: "center",
           },
-          colorComponentsText:{
-            color: colorComponentsText,
+          textColor: {
+            color: textColor
           },
-          backgroundComponents:{
-            backgroundColor: backgroundColorComponents,
+          colorTextButton: {
+            color: colorTextButton
           },
-          backgroundColorComponentsEntrar:{
-            backgroundColor: backgroundColorComponentsEntrar,
+          textColorBlack: {
+            color: textColorBlack
           },
-          colorTextCadastrar: {
-            color: colorTextCadastrar,
-          },
-          backgroundColorComponentsChamarDrawer: {
-            backgroundColor: colorComponentsChamarDrawer,
+          backgroundColorVermelho:{
+            backgroundColor: backgroundColorVermelho
           }
+          // botoes:{
+          //   fontSize: 25 + tamanhoFonte,
+          //   color: colorComponentsText // ou #000
+          // },
+          // textColor:{
+          //   // color: colorText,
+          // },
+          // colorComponentsText:{
+          //   color: colorComponentsText,
+          // },
+          // backgroundComponents:{
+          //   backgroundColor: backgroundColorComponents,
+          // },
+          // backgroundColorComponentsEntrar:{
+          //   backgroundColor: backgroundColorComponentsEntrar,
+          // },
+          // colorTextCadastrar: {
+            // color: colorTextCadastrar,
+          // },
+          // backgroundColorComponentsChamarDrawer: {
+          //   backgroundColor: colorComponentsChamarDrawer,
+          // }
     });
 }

@@ -51,7 +51,7 @@ export function TelaEscolha({ navigation }) {
             const usuarioId = await AsyncStorage.getItem('UsuarioId')
             console.log(usuarioId)
 
-            const response = await axios.post('https://ccdd-2804-14c-b385-8302-b55c-d800-af93-e30f.ngrok-free.app/pegarInfo/', {
+            const response = await axios.post('https://9084-2804-14c-b385-8302-f545-573d-4e45-a75c.ngrok-free.app/pegarInfo/', {
                 id: usuarioId
             })
             const dadosUsuario = response.data;
@@ -82,7 +82,7 @@ export function TelaEscolha({ navigation }) {
         console.log(emergencia)
 
         // Faz a requisição para iniciar a chamada
-        const chamadaResponse = await fetch('https://ccdd-2804-14c-b385-8302-b55c-d800-af93-e30f.ngrok-free.app/iniciar-chamada', {
+        const chamadaResponse = await fetch('https://9084-2804-14c-b385-8302-f545-573d-4e45-a75c.ngrok-free.app/iniciar-chamada', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -119,14 +119,17 @@ export function TelaEscolha({ navigation }) {
         <SafeAreaView style={{ ...stylesTheme.containerTheme, ...styles.container }}>
             <StatusBar backgroundColor={'#060007'} hidden={true} />
             <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: '100%' }}>
-                <Icon name='arrow-back' style={{ ...stylesTheme.textColor, ...styles.arrow }} />
+                <Icon name='arrow-back' style={{ ...stylesTheme.textColorBlack, ...styles.arrow }} />
             </TouchableOpacity>
             <View style={styles.areaEmergencias}>
-                <Text style={{ ...stylesTheme.medio, ...styles.textoAreaEmergencias }}>
+                <Text style={{ ...stylesTheme.grande,...stylesTheme.textColorBlack, ...styles.textoAreaEmergencias, fontWeight: 500 }}>
                     Escolha sua Emergencia:
                 </Text>
+                <ScrollView>
+
+                
                 {emergenciasSelecionadas.length > 0 && (
-                    <ScrollView style={{ gap: 10 }}>
+                    <View style={{ gap: 10 }}>
                         {emergenciasSelecionadas.map((emergencia, index) => (
                             <Emergencias
                                 emergencia={emergencia}
@@ -135,11 +138,11 @@ export function TelaEscolha({ navigation }) {
                                 isSelected={true}
                             />
                         ))}
-                    </ScrollView>
+                    </View>
                 )}
                 {/* Renderizar doenças não selecionadas */}
                 {emergenciasNaoSelecionadas.length > 0 && (
-                    <ScrollView style={{ gap: 10 }}>
+                    <View style={{ gap: 10 }}>
                         <View>
                             {emergenciasNaoSelecionadas.map((emergencia, index) => (
                                 <Emergencias
@@ -150,8 +153,9 @@ export function TelaEscolha({ navigation }) {
                                 />
                             ))}
                         </View>
-                    </ScrollView>
+                    </View>
                 )}
+                </ScrollView>
             </View>
         </SafeAreaView>
     );

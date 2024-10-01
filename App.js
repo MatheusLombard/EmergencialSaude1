@@ -30,61 +30,61 @@ SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
 
-function DrawerNavigator() {
-  const {colorComponentsChamarDrawer, colorText, tamanhoFonte} = useEmergencialContext();
+// function DrawerNavigator() {
+//   const {colorComponentsChamarDrawer, colorText, tamanhoFonte} = useEmergencialContext();
 
-  return (
-<Drawer.Navigator
-  initialRouteName="Home"
-  screenOptions={{
-    headerShown: false,
-    drawerStyle: {
-      backgroundColor: colorComponentsChamarDrawer,
-      padding: 10,
-    },
-    drawerLabelStyle: {
-      color: colorText,
-      fontSize: 18 + tamanhoFonte, // Ajusta a distância entre ícone e texto
-    },
-  }}
->
-      <Drawer.Screen name="Home" component={Home} options={{drawerIcon: () => (
-            <Icon 
-              name="home"
-              size={32} 
-              color={colorText} 
-              style={{width: 35}}
-            />),
+//   return (
+// <Drawer.Navigator
+//   initialRouteName="Home"
+//   screenOptions={{
+//     headerShown: false,
+//     drawerStyle: {
+//       backgroundColor: colorComponentsChamarDrawer,
+//       padding: 10,
+//     },
+//     drawerLabelStyle: {
+//       color: colorText,
+//       fontSize: 18 + tamanhoFonte, // Ajusta a distância entre ícone e texto
+//     },
+//   }}
+// >
+//       <Drawer.Screen name="Home" component={Home} options={{drawerIcon: () => (
+//             <Icon 
+//               name="  "
+//               size={32} 
+//               color={colorText} 
+//               style={{width: 35}}
+//             />),
 
-            title: 'Home'}}/>
-      <Drawer.Screen name="FichaEditavel" component={FichaEditavel} options={{drawerIcon: ({ color, size }) => (
-            <Icon 
-              name="user"
-              size={32} 
-              color={colorText} 
-              style={{width: 35}}
-            />),
-            title: 'Perfil'}}/>
-      {/* <Drawer.Screen name="TelaEscolha" component={TelaEscolha} options={{title: `Escolha a Emergência`}}/> */}
-      <Drawer.Screen name="Acessibilidade" component={Acessibilidade} options={{drawerIcon: ({ color, size }) => (
-            <Icon 
-              name="low-vision"
-              size={32} 
-              color={colorText} 
-              style={{width: 35}}
-            />),
-            title: 'Acessibilidade'}}/>
-      <Drawer.Screen name="Sair" component={Sair} options={{drawerIcon: ({ color, size }) => (
-            <Icon 
-              name="sign-out"
-              size={32} 
-              color={colorText} 
-              style={{width: 35}}
-            />),
-            title: 'Sair'}}/> 
-    </Drawer.Navigator>
-  );
-}
+//             title: 'Home'}}/>
+//       <Drawer.Screen name="FichaEditavel" component={FichaEditavel} options={{drawerIcon: ({ color, size }) => (
+//             <Icon 
+//               name="user"
+//               size={32} 
+//               color={colorText} 
+//               style={{width: 35}}
+//             />),
+//             title: 'Perfil'}}/>
+//       {/* <Drawer.Screen name="TelaEscolha" component={TelaEscolha} options={{title: `Escolha a Emergência`}}/> */}
+//       <Drawer.Screen name="Acessibilidade" component={Acessibilidade} options={{drawerIcon: ({ color, size }) => (
+//             <Icon 
+//               name="low-vision"
+//               size={32} 
+//               color={colorText} 
+//               style={{width: 35}}
+//             />),
+//             title: 'Acessibilidade'}}/>
+//       <Drawer.Screen name="Sair" component={Sair} options={{drawerIcon: ({ color, size }) => (
+//             <Icon 
+//               name="sign-out"
+//               size={32} 
+//               color={colorText} 
+//               style={{width: 35}}
+//             />),
+//             title: 'Sair'}}/> 
+//     </Drawer.Navigator>
+//   );
+// }
 
 export default function App() {
   const [initialRouteName, setInitialRouteName] = useState('')
@@ -99,7 +99,7 @@ export default function App() {
      const logado = await AsyncStorage.getItem('UsuarioId')
      console.log(logado)
      if(logado){
-      setInitialRouteName('Drawer')
+      setInitialRouteName('Home')
      }else{
       setInitialRouteName('Welcome')
      }
@@ -120,7 +120,9 @@ export default function App() {
           <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="Cadastro" component={Cadastro} />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Drawer" component={DrawerNavigator}/>
+          <Stack.Screen name="Home" component={Home}/>
+          <Stack.Screen name="FichaEditavel" component={FichaEditavel}/>
+          <Stack.Screen name="Sair" component={Sair}/>
           <Stack.Screen name="Acessibilidade" component={Acessibilidade} />
           <Stack.Screen name="Editar" component={Editar} />
           <Stack.Screen name="TelaEscolha" component={TelaEscolha} />

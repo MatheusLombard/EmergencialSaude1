@@ -1,6 +1,6 @@
-import { TouchableOpacity, View, Text, StyleSheet, StatusBar, Dimensions, Alert } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet, StatusBar, Dimensions, Alert, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import  Icon  from 'react-native-vector-icons/FontAwesome';
 // import { useFocusEffect } from '@react-navigation/native';
 import { useStylesTheme } from '../../../style/styles';
 import { useEffect, useState } from 'react';
@@ -100,7 +100,7 @@ export function Home({ navigation }) {
     const idUsuario = parseInt(idUsuarioString);
 
     try {
-      const response = await axios.post('https://ccdd-2804-14c-b385-8302-b55c-d800-af93-e30f.ngrok-free.app/pegarInfo/', {
+      const response = await axios.post('https://9084-2804-14c-b385-8302-f545-573d-4e45-a75c.ngrok-free.app/pegarInfo/', {
         id: idUsuario
       });
 
@@ -131,7 +131,7 @@ export function Home({ navigation }) {
       const motivo = 'acidente'
 
       // Faz a requisição para iniciar a chamada
-      const chamadaResponse = await fetch('https://ccdd-2804-14c-b385-8302-b55c-d800-af93-e30f.ngrok-free.app/iniciar-chamada', {
+      const chamadaResponse = await fetch('https://9084-2804-14c-b385-8302-f545-573d-4e45-a75c.ngrok-free.app/iniciar-chamada', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -166,23 +166,37 @@ export function Home({ navigation }) {
 
   return (
     <SafeAreaView style={{ ...styleTheme.containerTheme, ...styles.container }}>
-      <StatusBar backgroundColor={'#060007'} hidden={true} />
-      <TouchableOpacity style={styles.areaMenu} onPress={() => navigation.openDrawer()}>
+      <StatusBar backgroundColor={'#fff'} hidden={true} />
+      {/* <TouchableOpacity style={styles.areaMenu} onPress={() => navigation.openDrawer()}>
         <Text style={{ ...styleTheme.medio, ...styles.textoMenu }}>Menu</Text>
         <Icon name="navicon" size={27} style={styleTheme.textColor} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={styles.areaChamar}>
         <View style={styles.ViewBotaoAreaChamar}>
-          <TouchableOpacity style={{ ...styleTheme.backgroundColorComponentsChamarDrawer, ...styles.botaoAreaChamar, width: circleSize, height: circleSize, borderColor: borderColor }} onPress={() => navigation.navigate('TelaEscolha')}>
-            <Text style={{ ...styleTheme.grande, ...styles.textoChamar }}>CHAMAR EMERGÊNCIA</Text>
+          <TouchableOpacity style={{ ...styleTheme.backgroundColorVermelho, ...styles.botaoAreaChamar, width: circleSize, height: circleSize, borderColor: borderColor }} onPress={() => navigation.navigate('TelaEscolha')}>
+            <Icon name='phone' size={150} style={{...styleTheme.textColor}}/>
           </TouchableOpacity>
         </View>
         <View style={styles.ViewBotaoAreaChamarAcidente}>
-          <TouchableOpacity style={{ ...styleTheme.backgroundColorComponentsChamarDrawer, ...styles.botaoAreaChamarAcidente, borderColor: borderColor }} onPress={iniciarChamada}>
+          <TouchableOpacity style={{ ...styleTheme.backgroundColorVermelho, ...styles.botaoAreaChamarAcidente, borderColor: borderColor }} onPress={iniciarChamada}>
             <Text style={{ ...styleTheme.grande, ...styles.textoChamar }}>ACIDENTE</Text>
           </TouchableOpacity>
         </View>
       </View>
+      <View style={{ ...styles.navBar, ...styleTheme.backgroundColorVermelho }}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <Icon name="home" style={{ ...styleTheme.grande, ...styleTheme.textColor }} />
+      </TouchableOpacity>
+      <TouchableOpacity  onPress={() => navigation.navigate('FichaEditavel')}>
+        <Icon name="user" style={{ ...styleTheme.grande, ...styleTheme.textColor }} />
+      </TouchableOpacity>
+      <TouchableOpacity  onPress={() => navigation.navigate('Acessibilidade')}>
+        <Icon name="eye-slash" style={{ ...styleTheme.grande, ...styleTheme.textColor }} />
+      </TouchableOpacity>
+      <TouchableOpacity  onPress={() => navigation.navigate('Sair')}>
+        <Icon name="sign-out" style={{ ...styleTheme.grande, ...styleTheme.textColor }} />
+      </TouchableOpacity>
+    </View>
     </SafeAreaView>
 
   );
@@ -192,7 +206,6 @@ export function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    padding: 10,
   },
   areaMenu: {
     width: '100%',
@@ -233,5 +246,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 20
   },
+  navBar:{
+    width: '100%',
+    height: 70,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  }
 
 })

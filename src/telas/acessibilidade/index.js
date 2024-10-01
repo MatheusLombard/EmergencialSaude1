@@ -11,44 +11,42 @@ export function Acessibilidade({ navigation }) {
   const [isEnabledTrita, setIsEnabledTrita] = useState(false);
   const [isEnabledProta, setIsEnabledProta] = useState(false);
   const stylesTheme = useStylesTheme();
-  const { setBackgroundColor, backgroundColor, setColorText, setColorTextCadastrar,
-     setBackgroundColorComponents, setBackgroundColorComponentsEntrar, backgroundColorComponentsEntrar, 
-     setTamanhoFonte, setColorComponentsChamarDrawer} = useEmergencialContext();
+  const { setBackgroundColor, backgroundColor, setBackgroundColorButton, 
+     setTamanhoFonte, setColorTextButton, setTextColor, setTextColorBlack, setBackgroundColorVermelho} = useEmergencialContext();
 
   useEffect(() => {
     console.log(backgroundColor)
-    if(backgroundColor === '#FFFFFE'){
+    if(backgroundColor === '#fff5f4'){
       setIsEnabledProta(true)
     }
-    if(backgroundColor === '#FFF'){
+    if(backgroundColor === '#fff5f6'){
       setIsEnabledTrita(true)
     }
   }, [])
 
   function colorPadrao(){
-    setBackgroundColor('#060007');
-    setColorText('#fff');
-    setColorTextCadastrar('#ff3131');//o mesmo do chamarDrawer
-    setBackgroundColorComponents('#fff');
-    setBackgroundColorComponentsEntrar('#ff3131');
-    setColorComponentsChamarDrawer('#ff3131');
-    // setColorTextFicha('#060007')
+    setBackgroundColor('#fff5f5');
+    setBackgroundColorButton('#fff')
+    setColorTextButton('#9b1717')
+    setTextColor('#fff')
+    setTextColorBlack('#000')
+    setBackgroundColorVermelho('#840d0d')
   }
   function colorProta(){
-    setBackgroundColor('#FFFFFE');
-    setColorText('#38070C');
-    setColorTextCadastrar('#38070C');
-    setBackgroundColorComponents('#FF933E');
-    setBackgroundColorComponentsEntrar('#FF933E');
-    setColorComponentsChamarDrawer('#FF933E');
+    setBackgroundColor('#fff5f4');
+    setBackgroundColorButton('#fff')
+    setColorTextButton('#9b1717')
+    setTextColor('#fff')
+    setTextColorBlack('#000')
+    setBackgroundColorVermelho('#FF933E')
   }
   function colorTrita(){
-    setBackgroundColor('#FFF');
-    setColorText('#38070C');
-    setColorTextCadastrar('#38070C');
-    setBackgroundColorComponents('#FFA1AA');
-    setBackgroundColorComponentsEntrar('#FFA1AA');
-    setColorComponentsChamarDrawer('#FFA1AA');
+    setBackgroundColor('#fff5f6');
+    setBackgroundColorButton('#fff')
+    setColorTextButton('#9b1717')
+    setTextColor('#000')
+    setTextColorBlack('#000')
+    setBackgroundColorVermelho('#FFA1AA');
   }
   const changeValueProta = async () => {
     setIsEnabledProta(previousState => !previousState);
@@ -56,7 +54,7 @@ export function Acessibilidade({ navigation }) {
       console.log('desativado')
       colorPadrao();
 
-      await AsyncStorage.setItem('background', '#060007')
+      await AsyncStorage.setItem('background', '#fff5f5')
 
     } else {
       console.log('ativado')
@@ -64,7 +62,7 @@ export function Acessibilidade({ navigation }) {
       
       // GUARDANDO INFORMAÇÕES 
 
-      await AsyncStorage.setItem('background', '#FFFFFE')
+      await AsyncStorage.setItem('background', '#fff5f4')
     }
   }
   const changeValueTrita = async () => {
@@ -75,7 +73,7 @@ export function Acessibilidade({ navigation }) {
 
       // GUARDANDO INFORMAÇÕES 
 
-      await AsyncStorage.setItem('background', '#060007')
+      await AsyncStorage.setItem('background', '#fff5f5')
       
       } else {
         console.log('ativado')
@@ -83,7 +81,7 @@ export function Acessibilidade({ navigation }) {
         
         // GUARDANDO INFORMAÇÕES 
 
-        await AsyncStorage.setItem('background', '#FFF')
+        await AsyncStorage.setItem('background', '#fff5f6')
         
 
     }
@@ -107,17 +105,17 @@ export function Acessibilidade({ navigation }) {
     <SafeAreaView style={{...stylesTheme.containerTheme,...styles.container}}>
       <StatusBar backgroundColor={'#060007'} hidden={true} />
       <TouchableOpacity onPress={() => navigation.goBack()} style={{width: '100%'}}>
-        <Icon name='arrow-back' style={{...stylesTheme.textColor,...styles.arrow}} />
+        <Icon name='arrow-back' style={{...styles.arrow, ...stylesTheme.textColorBlack}}/>
       </TouchableOpacity>
       <View style={styles.viewBody}>
         <View style={styles.viewTitulo}>
-          <Text style={{...stylesTheme.grande, ...styles.tituloAcessibilidade }}>
+          <Text style={{...stylesTheme.grande, ...styles.tituloAcessibilidade, ...stylesTheme.textColorBlack }}>
             Acessibilidade
           </Text>
         </View>
         <View style={styles.elementos}>
           <View style={styles.viewModosAcessibilidade}>
-            <Text style={{...stylesTheme.pequeno, ...styles.textoModosAcessibilidade}}>
+            <Text style={{...stylesTheme.pequeno, ...styles.textoModosAcessibilidade, ...stylesTheme.textColorBlack}}>
               Modo Claro / Protanopia / Deuteranopia
             </Text>
             <Switch
@@ -130,7 +128,7 @@ export function Acessibilidade({ navigation }) {
           </View>
           <View style={{width: '100%', borderWidth: 1,borderColor: 'gray'}}></View>
           <View style={styles.viewModosAcessibilidade}>
-            <Text style={{...stylesTheme.pequeno,  ...styles.textoModosAcessibilidade}}>
+            <Text style={{...stylesTheme.pequeno,  ...styles.textoModosAcessibilidade, ...stylesTheme.textColorBlack}}>
               Modo Claro / Tritanopia
             </Text>
             <Switch
@@ -143,21 +141,21 @@ export function Acessibilidade({ navigation }) {
           </View>
           <View style={{width: '100%', borderWidth: 1,borderColor: 'gray'}}></View>
           <View style={{...styles.viewModosAcessibilidade, justifyContent: 'space-between'}}>
-            <Text style={{...stylesTheme.pequeno, width: '50%'}}>
+            <Text style={{...stylesTheme.pequeno, width: '50%', ...stylesTheme.textColorBlack}}>
               Tamanho da fonte
             </Text>
-            <TouchableOpacity style={{...styles.botoesTamanho, borderColor: backgroundColorComponentsEntrar}} onPress={() => changeFontSize("p")}>
-              <Text style={{...stylesTheme.textColor, fontSize: 18}}>
+            <TouchableOpacity style={{...styles.botoesTamanho}} onPress={() => changeFontSize("p")}>
+              <Text style={{...stylesTheme.textColor, fontSize: 18, ...stylesTheme.textColorBlack}}>
                 P
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{...styles.botoesTamanho, borderColor: backgroundColorComponentsEntrar}} onPress={() => changeFontSize("m")}>
-              <Text style={{...stylesTheme.textColor, fontSize: 23}}>
+            <TouchableOpacity style={{...styles.botoesTamanho}} onPress={() => changeFontSize("m")}>
+              <Text style={{...stylesTheme.textColor, fontSize: 23, ...stylesTheme.textColorBlack}}>
                 M
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{...styles.botoesTamanho, borderColor: backgroundColorComponentsEntrar}} onPress={() => changeFontSize("g")}>
-              <Text style={{...stylesTheme.textColor, fontSize: 28}}>
+            <TouchableOpacity style={{...styles.botoesTamanho}} onPress={() => changeFontSize("g")}>
+              <Text style={{...stylesTheme.textColor, fontSize: 28, ...stylesTheme.textColorBlack}}>
                 G
               </Text>
             </TouchableOpacity>
@@ -199,6 +197,5 @@ const styles = StyleSheet.create({
   botoesTamanho:{
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor:'#fff'
   }
 })

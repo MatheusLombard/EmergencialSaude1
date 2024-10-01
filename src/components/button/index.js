@@ -5,8 +5,8 @@ export function Buttons({text, gt, lt, action, style} ) {
     const stylesTheme = useStylesTheme();
     return (
     <View>
-        <TouchableOpacity style={[{...stylesTheme.backgroundColorComponents,...styles.buttonPressEntrar}, style]} onPress={action}>
-            <Text style={stylesTheme.botoes}>{text}</Text>
+        <TouchableOpacity style={[{...stylesTheme.backgroundColorButton,...styles.buttonPressEntrar}, style]} onPress={action}>
+            <Text style={{...stylesTheme.medio, ...stylesTheme.colorTextButton}}>{text}</Text>
         </TouchableOpacity>
     </View>
   );
@@ -16,7 +16,8 @@ export function Buttons({text, gt, lt, action, style} ) {
 const styles = StyleSheet.create({
     buttonPressEntrar: {
         borderRadius: 18,
-        width: 160,
-        height: 60, 
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        minHeight: 50
     },
 })

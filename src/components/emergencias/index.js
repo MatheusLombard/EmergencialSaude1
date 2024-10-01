@@ -5,19 +5,23 @@ import { useStylesTheme } from '../../style/styles';
 
 export function Emergencias({ emergencia, emergenciaSelecionada, isSelected }) {
   const stylesTheme = useStylesTheme();
-  const { backgroundColor, colorComponentsChoose, setColorComponentsChoose, colorTextCadastrar } = useEmergencialContext();
+  const { backgroundColor, backgroundColorVermelho, setBackgroundColorVermelho, colorTextCadastrar } = useEmergencialContext();
 
   useEffect(() => {
-      if (backgroundColor === '#6D050F' || backgroundColor === '#FFF') {
-        setColorComponentsChoose('#FFA1AA');
-      } else if (backgroundColor === '#FFFFFE') {
-        setColorComponentsChoose('#FF933E');
+      if (backgroundColor === '#fff5f5'){
+
+      }else if(
+        
+        backgroundColor === '#fff5f4') {
+          setBackgroundColorVermelho('#FF933E');
+        } else if (backgroundColor === '#fff5f6') {
+        setBackgroundColorVermelho('#FFA1AA');
       }
     }, [backgroundColor])
 
 
-  const buttonColor = !isSelected ? '#FF3333' : colorComponentsChoose; 
-  const textButtonColor = !isSelected ? '#fff' : colorTextCadastrar
+  const buttonColor = !isSelected ? backgroundColorVermelho : '#ff0000' 
+  const textButtonColor = !isSelected ? colorTextCadastrar :  '#fff'
 
   return (
     <View style={styles.areaEscolher}>
@@ -53,6 +57,7 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 10,
         marginBottom: 13,
-        
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 });
